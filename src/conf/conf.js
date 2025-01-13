@@ -1,5 +1,5 @@
 // src/config.js
-const BASE_URL = "http://localhost:8000/api/v1";
+export const BASE_URL = "http://localhost:8000/api/v1";
 
 export const API_ENDPOINTS = {
     //user
@@ -17,4 +17,6 @@ export const API_ENDPOINTS = {
   GET_CHANNEL_VIDEOS: `${BASE_URL}/video/c/:username`,
   PUSH_VIDEO_TO_WATCH_HISTORY: `${BASE_URL}/video/watch-history`,
   TOGGLE_IS_PUBLISHED: `${BASE_URL}/video/c/:videoId`,
+
+  
 };

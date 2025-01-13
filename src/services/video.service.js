@@ -6,12 +6,27 @@ export class Videoservice{
 
     async uploadVideo({videoFile, title ,description, isPublished, thumbnail}){
         try {
+            const formData = new FormData();
+            // Step 2: Append files
+            formData.append("videoFile", videoFile); // 'videoFile' is the key expected by the backend
+            formData.append("thumbnail", thumbnail);
+
+            // Step 3: Append text fields
+            formData.append("title", title);          // Add title
+            formData.append("description", description); // Add description
+            formData.append("isPublished", isPublished); // Add publish status
+
+
             const upload = await axios.post(API_ENDPOINTS.UPLOAD_VIDEO.toString(),
-            {
-               videoFile,title, description, isPublished, thumbnail 
-            },
-            {withCredentials: true}
-            )
+            formData,
+            { 
+                withCredentials: true, // If authentication cookies or tokens are needed
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    console.log(`Upload Progress: ${percentCompleted}%`);
+                },
+            }
+        )
             if(!upload){
                 return null
             }
@@ -57,8 +72,15 @@ export class Videoservice{
 
     async editVideo({newThumbnail, title, description, videoId}){
         try {
+            const formData = new FormData();
+
+            formData.append("newThumbnail",newThumbnail)
+            formData.append("title",title)
+            formData.append("description",description)
+            formData.append("videoId",videoId)
+            
             const editedvideos = await axios.post(API_ENDPOINTS.EDIT_VIDEO.toString(),
-            { newThumbnail , title , description, videoId},
+            formData,
             {withCredentials:  true}
             )
             if(!editedvideos){
