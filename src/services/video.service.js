@@ -1,5 +1,5 @@
 import axios from "axios";
-import {API_ENDPOINTS} from "../conf/conf"
+import {BASE_URL} from "../conf/conf.js"
 
 
 export class Videoservice{
@@ -57,12 +57,12 @@ export class Videoservice{
 
     async getAllVideos(){
         try {
-            const allvideos = await axios.get(API_ENDPOINTS.ALL_VIDEOS.toString()
+            const allvideos = await axios.get(`${BASE_URL}/video/all-videos`
             )
             if(!allvideos){
                 return null
             }
-            return allvideos
+            return allvideos.data
         } 
         catch (error) {
             console.log("ERROR IN GETTING ALL VIDEOS :: ", error?.message);

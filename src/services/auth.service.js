@@ -1,6 +1,8 @@
 import axios from "axios"
 import { BASE_URL } from "../conf/conf";
 
+axios.defaults.withCredentials= true;
+
 export class Authservice{
     
     async createAccount({username , email ,password , avatar, fullName ,coverImage}){
@@ -16,13 +18,15 @@ export class Authservice{
             formData.append("coverImage",coverImage) 
         }
 
-        const userAccount = await axios.post("/api/v1/users/register",
+        const userAccount = await axios.post(`${BASE_URL}/users/register`,
                 formData )
                  
         if(!userAccount){
             return null
            }
-        
+        if(userAccount){
+            return this.login({email, username, password})
+        }
         return userAccount
        } 
        catch (error) {
@@ -32,11 +36,12 @@ export class Authservice{
 
     async login({username ,email ,password}){
         try {
-            const loginUser = await axios.post("/api/v1/users/login",
+            const loginUser = await axios.post(`${BASE_URL}/users/login`,
                 {email, password ,username},
-                {withCredentials : true}
+                
             )
             if(!loginUser){
+                console.log("NOT FOUND");
                 return null
             }
             return loginUser
@@ -49,23 +54,24 @@ export class Authservice{
 
     async getCurrentUser(){
         try {
-            const currentUser = await axios.get("/api/v1/users/get-currentuser",{
-                withCredentials: true
-            })
+            const currentUser = await axios.get(`${BASE_URL}/users/current-user`,
+               
+            )
 
             if(!currentUser){
+                console.log("NOT GETTING CURRENT USER");
                 return null
             }
-            return currentUser
+            return currentUser.data?.data
         } catch (error) {
-            console.log("ERROR IN GET CURRENT USER :: ",error);
+            console.log("ERROR IN GET CURRENT USER :: ",error?.message);
             throw error;
         }
     }
 
     async logout(){
         try {
-            return await axios.post("/api/v1/users/logout",
+            return await axios.post(`${BASE_URL}/users/logout`,
                 {withCredentials: true}
             )
         } catch (error) {

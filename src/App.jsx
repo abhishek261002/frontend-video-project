@@ -1,36 +1,24 @@
 import react,{ useState ,useEffect} from 'react'
 import Header from './components/headers/Header.jsx'
-import viteLogo from '/vite.svg'
+import { useDispatch } from 'react-redux'
 import './App.css'
-import axios from 'axios'
-
+import authservice from './services/auth.service.js'
+import Footer from './components/footers/Footer.jsx'
+import { Outlet } from 'react-router-dom'
 function App() {
-  const [data, setData] = useState("unfetched")
-
-  useEffect(()=>{
-    axios.post("/api/v1/users/login",
-          {
-              username: "three",
-              email:"three",
-              password:"three"
-          },
-          {    
-             withCredentials : true
-          }
-    )
-          .then((response)=>{
-                    const data  = response.data.data;
-                    console.log(response);
-                     setData(data)
-                     console.log(document.cookie);
-                     })
-          .catch((error)=> console.log(error))
-
-  
-  },[])
+  //const [data, setData] = useState("unfetched")
+   
   
   return (
- <></>
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+    <div className='w-full block'>
+      <Header/>
+      <main>
+        <Outlet/>
+      </main>
+      <Footer/>
+    </div>
+  </div>
   )
 }
 
