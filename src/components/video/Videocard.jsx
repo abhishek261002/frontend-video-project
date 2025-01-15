@@ -25,13 +25,14 @@ function Videocard({
                 </div>
                 <h4 className='text-xl font-serif font-thin text-center underline'>{title}</h4>
                 <div className='flex justify-evenly  bg-black h-15'>
+                    {owner && 
                     <div className='bg-green' >
-                        <Link to={`/users/${owner?.username}`}>
+                        <Link to={`/users/c/${owner?.username}`}>
                         <img src={owner?.avatar}  alt={owner?.username} className='rounded-3xl h-8'/>  
                         <h4 className='text-xs font-extralight'>@{owner?.username}</h4>
                         </Link>
-                    
                     </div>
+                    }
                     
                     <div className='  text-center gap-2 p-2'>
                     

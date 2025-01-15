@@ -110,15 +110,13 @@ export class Videoservice{
         }
     }
     
-    async getVideosFromChannel({username}){
+    async getVideosFromChannel(username){
         try {
-            const allVideosOfChannel = await axios.get(API_ENDPOINTS.GET_CHANNEL_VIDEOS.toString(),
-            { username}
-        )
+            const allVideosOfChannel = await axios.get(`${BASE_URL}/video/c/${username}`)
         if(!allVideosOfChannel){
             return null
         }
-        return allVideosOfChannel
+        return allVideosOfChannel.data
         } 
         catch (error) {
             console.log("ERROR IN GETTING VIDEOS FROM CHANNEL :: ",error?.message);

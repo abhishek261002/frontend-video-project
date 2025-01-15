@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter,} from 'react-router-dom';
 import Login from './pages/Login.jsx';
 import Signup from "./pages/Signup.jsx"
 import AllVideos from './pages/AllVideos.jsx';
+import Channel from './pages/Channel.jsx';
 const router = createBrowserRouter([
   {
     path:"/",
@@ -25,7 +26,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element:<Signup/>
       },
-      
+      {
+        path: "/users/c/:username",
+        element:<Channel/>
+      }
     ]
   }
 ])

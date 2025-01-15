@@ -5,22 +5,22 @@ import Videocard  from '../components/video/Videocard.jsx'
 
 function AllVideos() {
     const [allVideos, setAllVideos] = useState([]);
-
+    
     useEffect(()=>{
         const fetchVideos = async()=>{
-           try {
-             const getallVideos = await videoservice.getAllVideos();
-             if(getallVideos){
-                console.log(getallVideos);
-                setAllVideos(getallVideos.data)
-             }
-           } 
-           catch (error) {
-            console.log("ERROR IN FETCHING ALL VIDEO :: ",error?.message);
-            throw error;
-           }
-
-        }
+            try {
+              const getallVideos = await videoservice.getAllVideos();
+              if(getallVideos){
+                 console.log(getallVideos);
+                 setAllVideos(getallVideos.data)
+              }
+            } 
+            catch (error) {
+             console.log("ERROR IN FETCHING ALL VIDEO :: ",error?.message);
+             throw error;
+            }
+    
+         }
         fetchVideos();
     },[])
 

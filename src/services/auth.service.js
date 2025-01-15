@@ -175,17 +175,15 @@ export class Authservice{
         }
     }
 
-    async getUserChannelProfile({username}){
+    async getUserChannelProfile(username){
         try {
-            const channel = await axios.get(`${BASE_URL}/users/c/:${username}`,
-                { withCredentials: true}
+            const channel = await axios.get(`${BASE_URL}/users/c/${username}`
             )
 
             if(!channel){
                 return null
             }
-
-            return channel
+            return channel.data
             } 
         catch (error) {
             console.log("ERROR IN FETCHING CHANNEL PROFILE :: ",error?.message);
