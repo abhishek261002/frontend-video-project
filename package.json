@@ -12,6 +12,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
+    "cloudinary": "^2.5.1",
+    "cloudinary-video-player": "^2.3.0",
     "cors": "^2.8.5",
     "html-react-parser": "^5.2.2",
     "react": "^18.3.1",

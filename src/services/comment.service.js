@@ -3,9 +3,10 @@ import { BASE_URL} from "../conf/conf.js";
 
 export class CommentService{
 
-    async createComment({videoId}){
+    async createComment(videoId, content){
         try {
-            const createdcomment = await axios.post(`${BASE_URL}/comment/c/:${videoId}`,
+            const createdcomment = await axios.post(`${BASE_URL}/comment/${videoId}`,
+                    {content},
                     {withCredentials :true }
             )
     
@@ -59,16 +60,15 @@ export class CommentService{
         }
     }
 
-    async getCommentsOnVideo({videoId}){
+    async getCommentsOnVideo(videoId){
         try {
-            const comments = await axios.get(`${BASE_URL}/comment/c/:${videoId}`,
-                {withCredentials : true}
+            const comments = await axios.get(`${BASE_URL}/comment/${videoId}`
             )
     
             if(!comments){
                 return null
             }
-            return comments
+            return comments.data
         } 
         catch (error) {
             console.log("ERROR IN FETCHING COMMENTS OF VIDEO :: ",error?.message);

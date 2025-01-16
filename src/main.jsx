@@ -9,6 +9,7 @@ import Login from './pages/Login.jsx';
 import Signup from "./pages/Signup.jsx"
 import AllVideos from './pages/AllVideos.jsx';
 import Channel from './pages/Channel.jsx';
+import Videoplayer from "./components/video/Videoplayer.jsx"
 const router = createBrowserRouter([
   {
     path:"/",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/users/c/:username",
         element:<Channel/>
+      },
+      {
+        path: "/video/:videoId",
+        element:<Videoplayer/>,
       }
     ]
   }

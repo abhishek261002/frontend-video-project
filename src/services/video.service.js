@@ -94,15 +94,14 @@ export class Videoservice{
         }
     }
 
-    async streamVideo({videoId}){
+    async streamVideo(videoId){
         try {
-            const streamvideo = await axios.post(API_ENDPOINTS.STREAM_VIDEO.toString(),
-            { videoId}
+            const streamvideo = await axios.post(`${BASE_URL}/video/${videoId}`,
             )
             if(!streamvideo){
                 return null
             }
-            return streamvideo
+            return streamvideo.data?.data
         } 
         catch (error) {
             console.log("ERROR IN STREAM VIDEO :: ",error?.message);
