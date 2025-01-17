@@ -4,7 +4,7 @@ import "cloudinary-video-player/cld-video-player.min.css";
 import Container from "../../container/Container";
 import videoservice from "../../services/video.service";
 import commentservice from "../../services/comment.service.js";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Button, Input } from "../index.js";
 import Comments from "../../pages/Comments.jsx";
 
@@ -63,21 +63,23 @@ function Videoplayer() {
       <Container>
         <div className="w-full">
           {/* videoplayer */}
-          <div className="w-3/4 bg-gray-500 mx-auto">
+          <div className="w-3/4 bg-gray-500 mx-auto rounded-3xl p-2">
             <video
               ref={videoRef}
-              className="cld-video-player cld-fluid"
+              className="cld-video-player cld-fluid rounded-3xl"
             ></video>
-            <h1 className="text-4xl font-semibold text-white font-serif text-center">
+            <h1 className="text-2xl font-semibold my-4 mx-4 text-white font-serif text-start">
               title - {video?.title}
             </h1>
             <div className="w-full px-4 flex">
               <div className="w-1/2 flex gap-5 ">
+                <Link to={`/users/c/${video?.owner?.username}`}>
                 <img
                   src={video?.owner?.avatar}
                   alt={video?.owner?.username}
                   className="rounded-3xl h-10"
                 />
+                </Link>
                 <div className="flex flex-col">
                   <h6 className="text-sm font-semibold font-mono">
                     {video?.owner?.fullName}

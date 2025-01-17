@@ -4,7 +4,8 @@ import Logo from "./Logo.jsx"
 import Login from "./Login.jsx"
 import SignUp from "./SignUp.jsx"
 import Videocard from "./video/Videocard.jsx"
-
+import LikeDislikeBtn from "./reusables/LikeDislikeBtn.jsx"
+import Dropdowns from "./reusables/Dropdowns.jsx"
 export {
     Input,
     Button,
@@ -12,5 +13,6 @@ export {
     Login,
     SignUp,
     Videocard,
-
+    LikeDislikeBtn,
+    Dropdowns
 }

@@ -55,7 +55,6 @@ export class Authservice{
     async getCurrentUser(){
         try {
             const currentUser = await axios.get(`${BASE_URL}/users/current-user`,
-               
             )
 
             if(!currentUser){
@@ -177,7 +176,7 @@ export class Authservice{
 
     async getUserChannelProfile(username){
         try {
-            const channel = await axios.get(`${BASE_URL}/users/c/${username}`
+            const channel = await axios.get(`${BASE_URL}/users/c/${username}`,
             )
 
             if(!channel){
