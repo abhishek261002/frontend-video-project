@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Button({
     children,
+    rounded = "rounded-2xl",
     type = "button",
     bgColor = "bg-blue-600",
     textColor = "text-white",
@@ -9,7 +10,7 @@ export default function Button({
     ...props
 }) {
     return (
-        <button className={`px-4 py-2 rounded-2xl ${bgColor} ${textColor} ${className}`} {...props}>
+        <button className={`px-4 py-2 ${rounded} ${bgColor} ${textColor} ${className}`} {...props}>
             {children}
         </button>
     );

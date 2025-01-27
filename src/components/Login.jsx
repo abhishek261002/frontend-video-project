@@ -21,11 +21,10 @@ function Login() {
     try {
       const session = await authservice.login({ ...data });
       if (session) {
-        console.log(session);
-        const userData = await authservice.getCurrentUser();
-        console.log(userData);
-        if (userData) {
-          dispatch(storeLogin(userData));
+        const data = await authservice.getCurrentUser();
+        console.log(data);
+        if (data) {
+          dispatch(storeLogin(data));
         }
         navigate("/");
       }

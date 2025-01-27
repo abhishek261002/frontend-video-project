@@ -71,7 +71,6 @@ export class Authservice{
     async logout(){
         try {
             return await axios.post(`${BASE_URL}/users/logout`,
-                {withCredentials: true}
             )
         } catch (error) {
             console.log("ERROR IN LOGOUT USER :: ",error);

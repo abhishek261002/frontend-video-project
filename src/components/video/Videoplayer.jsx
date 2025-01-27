@@ -3,9 +3,8 @@ import cloudinary from "cloudinary-video-player";
 import "cloudinary-video-player/cld-video-player.min.css";
 import Container from "../../container/Container";
 import videoservice from "../../services/video.service";
-import commentservice from "../../services/comment.service.js";
 import { useParams, Link } from "react-router-dom";
-import { Button, Input } from "../index.js";
+import { Button, Input , SubscribeBtn } from "../index.js";
 import Comments from "../../pages/Comments.jsx";
 
 function Videoplayer() {
@@ -13,7 +12,10 @@ function Videoplayer() {
   const videoRef = useRef(null);
   const cloudinaryRef = useRef();
   const [video, setVideo] = useState("");
+
   // const [comments , setComments ] = useState([])
+
+
   useEffect(() => {
     const sourceUrl = async () => {
       if (cloudinaryRef.current) return;
@@ -88,9 +90,7 @@ function Videoplayer() {
                     {video?.owner?.subscribersCount} subscribers
                   </h6>
                 </div>
-                <Button bgColor="bg-red-700" className="bg-black">
-                  Subscribe
-                </Button>
+                <SubscribeBtn channelId={video?.owner?._id} />
               </div>
               <div className="w-1/2 flex justify-end gap-4">
                 <Button className="hover:bg-blue-700">

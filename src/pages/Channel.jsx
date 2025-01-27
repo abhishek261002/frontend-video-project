@@ -5,7 +5,7 @@ import authservice from "../services/auth.service.js";
 import videoservice from "../services/video.service.js";
 import Container from "../container/Container.jsx";
 import { Videocard,Button } from "../components/index.js";
-
+import { SubscribeBtn } from "../components/index.js";
 function Channel() {
   const [allVideos,setAllVideos] = useState([])
   const [videosCount,setVideosCount] = useState(0)
@@ -78,7 +78,7 @@ const fetchVideos = async()=>{
           <h6 className="text-sm font-bold text-white">Subscribers : {channel?.subscribersCount}</h6>
           <h6 className="text-sm font-bold text-white">channelsSubscribedToCount : { channel?.channelsSubscribedToCount}</h6>
           <h3 className="text-sm font-bold text-white" >No. of videos : {videosCount}</h3>
-          <Button>Subscribe</Button>
+          <SubscribeBtn/>
         </div>
          
           {/* {isAuthor && (

@@ -6,6 +6,7 @@ import SignUp from "./SignUp.jsx"
 import Videocard from "./video/Videocard.jsx"
 import LikeDislikeBtn from "./reusables/LikeDislikeBtn.jsx"
 import Dropdowns from "./reusables/Dropdowns.jsx"
+import SubscribeBtn from "./reusables/SubscribeBtn.jsx"
 export {
     Input,
     Button,
@@ -14,5 +15,6 @@ export {
     SignUp,
     Videocard,
     LikeDislikeBtn,
-    Dropdowns
+    Dropdowns,
+    SubscribeBtn
 }

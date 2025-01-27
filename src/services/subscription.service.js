@@ -19,7 +19,19 @@ export class SubscriptionService{
        }
     } 
 
-
+    async toggleSubscription(channelId){
+         try {
+            const toggle = await axios.post(`${BASE_URL}/subscription/c/${channelId}/toggle-subscription`)
+            if(!toggle){
+               return null
+            }
+            return toggle.data?.data   
+         } 
+         catch (error) {
+            console.log("ERROR IN TOGGLE SUBSCRIPTION :: ",error?.message);
+            throw error
+         }
+    }
 }
 
 

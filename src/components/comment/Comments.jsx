@@ -23,7 +23,7 @@ function Comments({ content, createdBy, createdAt, likesOnComment,_id }) {
         <h6 className="pt-0.4 text-xs font-extralight font-mono">{createdAt?.split("T")?.[0]}</h6>
       </div>
         <h6 className="text-lg text-slate-900 mb-1">{content}</h6>
-        <LikeDislikeBtn LikesOnComment={likesOnComment} commentId={_id}/>
+        <LikeDislikeBtn initialLikesOnComment={likesOnComment} commentId={_id}/>
       </div>
      
       {isOwnerOfComment && (
