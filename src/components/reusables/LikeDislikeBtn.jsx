@@ -11,7 +11,7 @@ function LikeDislikeBtn({
     {
     const dispatch = useDispatch()
     const {videoId} = useParams();
-    const likedComments = useSelector((state)=>(state.likedComments))
+    const likedComments = useSelector((state)=>(state.auth.likedComments))
     const isAlreadyLiked = likedComments.includes(commentId) ? true : false
     const [likes, setLikes] = useState(initialLikesOnComment);
 

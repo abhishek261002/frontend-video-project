@@ -2,10 +2,11 @@ import React,{useEffect,useState} from 'react'
 import Container from "../container/Container.jsx"
 import videoservice from '../services/video.service.js'
 import Videocard  from '../components/video/Videocard.jsx'
-
+import {setVideos} from "../store/videoSlice.js"
+import { useDispatch } from 'react-redux'
 function AllVideos() {
     const [allVideos, setAllVideos] = useState([]);
-    
+    const dispatch = useDispatch()
     useEffect(()=>{
         const fetchVideos = async()=>{
             try {
@@ -13,6 +14,7 @@ function AllVideos() {
               if(getallVideos){
                  console.log(getallVideos);
                  setAllVideos(getallVideos.data)
+                 dispatch(setVideos(getallVideos.data))
               }
             } 
             catch (error) {

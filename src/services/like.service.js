@@ -22,9 +22,10 @@ export class LikeService{
         }
     }
 
-    async toggleVideoLike({videoId}){
+    async toggleVideoLike(videoId){
         try {
-            const toggleLike = await axios.post(`${BASE_URL}/like/c/:${videoId}`,
+            const toggleLike = await axios.post(`${BASE_URL}/like/video`,
+                {videoId},
                 {withCredentials: true}
             )
     

@@ -46,7 +46,7 @@ function AllComments() {
   return (
     <div className="w-3/4 bg-gray-300 rounded-3xl mt-4 mx-auto">
         <h6 className="w-full p-3 font-bold text-2xl font-jaro tracking-wider">{len} Comments :</h6>
-      <div className="flex flex-col">
+      <div className="flex flex-col p-4">
         {/* create comment */}
         <div>
           <form onSubmit={handleSubmit(createComment)}>
@@ -68,7 +68,7 @@ function AllComments() {
         {comments &&
           comments.map((comment) => (
             <div key={comment._id} className=" p-4">
-              <Comments {...comment} />
+              <Comments {...comment} setRefresh={setRefresh} />
             </div>
           ))}
       </div>

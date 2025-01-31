@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {Button} from "../index.js";
 import SearchInput from "./SearchInput";
 import LogoutBtn from "./LogoutBtn.jsx";
+import { Upload } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,18 +16,10 @@ import {
 import authservice from "@/services/auth.service";
 
 function Header() {
-  const userStatus = useSelector((state) => state.status);
-  const [avatar, setAvatar] = useState("")
-
-    useEffect(()=>{
-        const currentUser = async()=>{
-            const user = await authservice.getCurrentUser();
-            if(user){
-                setAvatar(user?.userData?.avatar);
-            }
-        }
-        currentUser()
-    },[])
+  const userStatus = useSelector((state) => state.auth.status);
+  const avatar = useSelector((state)=>state.auth.userData?.avatar)
+  const username = useSelector((state)=>state.auth.userData?.username)
+    
 
   return (
     <header>
@@ -62,14 +56,18 @@ function Header() {
               </div>
             )}
             {userStatus && (
+              
               <div className="flex gap-4">
+                <Link to="/video/video-upload">
+                <Button bgColor="bg-gray-700" className="flex gap-2"><Upload/>Upload!</Button>
+                </Link>
                 <DropdownMenu>
-                  <DropdownMenuTrigger><img src={avatar || ""} alt="user"  className="rounded-full h-8" /></DropdownMenuTrigger>
+                  <DropdownMenuTrigger><img src={avatar || ""} alt="user"  className="rounded-full h-8 ring ring-offset-2 ring-indigo-500 " /></DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem><Link to={`/c/${username}/edit-profile`}>Edit profile</Link></DropdownMenuItem>
+                    <DropdownMenuItem>Dashboard</DropdownMenuItem>
                     <DropdownMenuItem>Team</DropdownMenuItem>
                     <DropdownMenuItem><LogoutBtn /></DropdownMenuItem>
                   </DropdownMenuContent>

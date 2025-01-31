@@ -3,18 +3,24 @@ import cloudinary from "cloudinary-video-player";
 import "cloudinary-video-player/cld-video-player.min.css";
 import Container from "../../container/Container";
 import videoservice from "../../services/video.service";
+import likeservice from "@/services/like.service";
 import { useParams, Link } from "react-router-dom";
 import { Button, Input , SubscribeBtn } from "../index.js";
 import Comments from "../../pages/Comments.jsx";
+import { ThumbsUp } from 'lucide-react';
 
 function Videoplayer() {
   const { videoId } = useParams();
   const videoRef = useRef(null);
   const cloudinaryRef = useRef();
   const [video, setVideo] = useState("");
-
   // const [comments , setComments ] = useState([])
-
+  const likeVideoFromId= async()=>{
+    const likeVideo = await likeservice.toggleVideoLike(video?._id);
+    if(likeVideo){
+      console.log(likeVideo);
+    }
+  }
 
   useEffect(() => {
     const sourceUrl = async () => {
@@ -42,21 +48,6 @@ function Videoplayer() {
         console.log("ERROR IN GETTING  SOURCE URL :: ", error?.message);
       }
     };
-    //   const fetchComments = async()=>{
-    //     try {
-    //         const comments = await commentservice.getCommentsOnVideo(videoId)
-    //         console.log(comments);
-    //         if(comments.data){
-    //             setComments(comments.data)
-    //         }
-    //     }
-    //     catch (error) {
-    //       console.log("ERROR IN FETCHING COMMENTS :: ", error?.message);
-    //       throw error
-    //     }
-    // }
-
-    // fetchComments()
     sourceUrl();
   }, []);
 
@@ -93,10 +84,12 @@ function Videoplayer() {
                 <SubscribeBtn channelId={video?.owner?._id} />
               </div>
               <div className="w-1/2 flex justify-end gap-4">
-                <Button className="hover:bg-blue-700">
-                  👍 {video?.totalLikesOnVideo} likes
+                <Button bgColor="bg-gray-700" className="hover:bg-black flex gap-2"
+                onClick={likeVideoFromId}
+                >
+                  <ThumbsUp/> {video?.totalLikesOnVideo} likes
                 </Button>
-                <Button className="hover:bg-blue-700">👎 dislike</Button>
+               
                 <Button
                   textColor="text-gray-800"
                   className="bg-gray-300 hover:bg-gray-400 font-bold"
@@ -119,23 +112,6 @@ function Videoplayer() {
               </h6>
             </div>
           </div>
-          {/* comments */}
-          {/* <div className="w-3/4 bg-red-500 mx-auto">
-          <div className='flex flex-col' > 
-
-            <Input
-            type="text" 
-            label="Create comment..."
-            placeholder="enter new comment"
-            />
-                    {comments && comments.map((comment)=>(
-                        <div key={comment._id} className='bg-green-500 p-4'> 
-                        <Comments {...comment}/>
-                    </div>
-                    )    
-                )}
-                </div>
-          </div> */}
           <Comments />
         </div>
       </Container>

@@ -7,6 +7,7 @@ import Videocard from "./video/Videocard.jsx"
 import LikeDislikeBtn from "./reusables/LikeDislikeBtn.jsx"
 import Dropdowns from "./reusables/Dropdowns.jsx"
 import SubscribeBtn from "./reusables/SubscribeBtn.jsx"
+import VideoUpload from "./video/VideoUpload.jsx"
 export {
     Input,
     Button,
@@ -16,5 +17,6 @@ export {
     Videocard,
     LikeDislikeBtn,
     Dropdowns,
-    SubscribeBtn
+    SubscribeBtn,
+    VideoUpload
 }

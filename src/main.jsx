@@ -9,7 +9,10 @@ import Login from './pages/Login.jsx';
 import Signup from "./pages/Signup.jsx"
 import AllVideos from './pages/AllVideos.jsx';
 import Channel from './pages/Channel.jsx';
+import EditProfile from './pages/EditProfile.jsx';
 import Videoplayer from "./components/video/Videoplayer.jsx"
+import EditVideos from './pages/EditVideos.jsx';
+import VideoUpload from './pages/VideoUpload.jsx';
 const router = createBrowserRouter([
   {
     path:"/",
@@ -29,11 +32,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/users/c/:username",
-        element:<Channel/>
+        element:<Channel/>,
+      },
+      {
+        path:"/c/:username/edit-profile",
+        element: <EditProfile/>
+      },
+      {
+          path:"/c/:username/edit-videos",
+          element: <EditVideos/>
       },
       {
         path: "/video/:videoId",
         element:<Videoplayer/>,
+      },
+      {
+        path: "/video/video-upload",
+        element:<VideoUpload/>,
       }
     ]
   }

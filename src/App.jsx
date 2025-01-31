@@ -1,4 +1,3 @@
-import react,{ useState ,useEffect} from 'react'
 import Header from './components/headers/Header.jsx'
 import { useDispatch } from 'react-redux'
 import './App.css'

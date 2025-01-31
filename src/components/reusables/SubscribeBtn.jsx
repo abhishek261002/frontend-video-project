@@ -5,7 +5,7 @@ import subscriptionservice from "../../services/subscription.service.js"
 import {toggleSubscription as storeToggleSub } from "../../store/authSlice.js"
 function SubscribeBtn({channelId}) {
 
-    const subscribedChannels = useSelector((state)=>(state.subscribedChannels))
+    const subscribedChannels = useSelector((state)=>(state.auth.subscribedChannels))
     const isSubscribed = subscribedChannels.includes(channelId)? true: false;
     const dispatch = useDispatch()
     const toggleSubscription = async()=>{

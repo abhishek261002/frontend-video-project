@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link, useParams } from "react-router-dom";
+import {login as storeLogin} from "../store/authSlice.js"
 import authservice from "../services/auth.service.js";
 import videoservice from "../services/video.service.js";
 import Container from "../container/Container.jsx";
@@ -12,8 +13,9 @@ function Channel() {
   const [channel, setChannel] = useState();
   const { username } = useParams();
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.userData);
-
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth.userData);
+  const [refresh, setRefresh] = useState(false)
   const isAuthor = username && userData ? username === userData.username : false
   console.log(isAuthor);
 
@@ -49,11 +51,17 @@ const fetchVideos = async()=>{
   }
 };
   useEffect(() => {
-    
+    const getCurrentUser = async () => {
+      const user = await authservice.getCurrentUser();
+      if (user) {
+        dispatch(storeLogin(user));
+      }
+    };
+    getCurrentUser();
     fetchChannelData();
     fetchVideos();
     
-  }, [ username, navigate]);
+  }, [refresh]);
 
   return channel ? (
     <div className="py-8">
@@ -78,7 +86,14 @@ const fetchVideos = async()=>{
           <h6 className="text-sm font-bold text-white">Subscribers : {channel?.subscribersCount}</h6>
           <h6 className="text-sm font-bold text-white">channelsSubscribedToCount : { channel?.channelsSubscribedToCount}</h6>
           <h3 className="text-sm font-bold text-white" >No. of videos : {videosCount}</h3>
-          <SubscribeBtn/>
+          {isAuthor && 
+          <div className="flex gap-4 py-2">
+        <Link to={`/c/${channel?.username}/edit-profile`}><Button>Customize Channel</Button></Link>
+        <Link to={`/c/${channel?.username}/edit-videos`}><Button>Manage Videos</Button></Link>
+          </div>
+  
+          }
+         {!isAuthor && <SubscribeBtn channelId={channel?._id}/>}
         </div>
          
           {/* {isAuthor && (
@@ -106,8 +121,8 @@ const fetchVideos = async()=>{
                   <Container>
                       <div className='flex flex-wrap bg-white' > 
                           {allVideos && allVideos.map((video)=>(
-                              <div key={video._id} className='p-8 w-1/4'> 
-                              <Videocard {...video}/>
+                              <div key={video._id} className='p-8 w-1/4'>
+                              <Videocard {...video} setRefresh={setRefresh} />
                           </div>
                           )    
                       )}

@@ -115,7 +115,7 @@ export class Authservice{
         }
     }
 
-    async editUserAvatar({avatar}){
+    async editUserAvatar(avatar){
         try {
             const formData = new FormData();
 
@@ -144,7 +144,7 @@ export class Authservice{
         }
     }
 
-    async editUserCoverImage({coverImage}){
+    async editUserCoverImage(coverImage){
         try {
             const formData = new FormData()
 

@@ -1,9 +1,33 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { Menu } from 'lucide-react';
+import {removeVideo} from "../../store/videoSlice.js"
+import videoservice from '@/services/video.service';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu";
+import { Button } from '../ui/button';
 function Videocard({
-    _id, thumbnail, title ,views, owner, duration, createdAt
+    _id, thumbnail, title ,views, owner, duration, createdAt, setRefresh
     }) {
-    
+        const dispatch = useDispatch();
+        const userData = useSelector((state) => state.auth.userData);
+        const {username} = useParams()
+        const isAuthor = username && userData ? username === userData.username : false
+        const deleteVideoFromId= async()=>{
+            const deleteVideo = await videoservice.deleteVideo(_id);
+            if(deleteVideo){
+                console.log(deleteVideo);
+                dispatch(removeVideo(deleteVideo))
+                setRefresh((prev)=> !prev)
+            }
+        }
         function formatTime(duration) {
             const rounded = Math.trunc(duration)
             const hours = Math.floor(rounded / 3600);
@@ -16,7 +40,8 @@ function Videocard({
         
 
   return (
-    <Link to={`/video/${_id}`}>
+    <div>
+        <Link to={`/video/${_id}`}>
         <div className='w-full p-2 rounded-xl bg-black text-white border-double border-red-500 border-2 backdrop-blur-md hover:scale-105'>
             <div className='w-full justify-center mb-2'>
                 <div className='w-full bg-black p-1.5 rounded-lg'>
@@ -39,11 +64,29 @@ function Videocard({
                     <h6 className='text-xs font-extralight'>views- {views} </h6>
                     <h6 className='text-xs font-extralight'>createdAt- {createdAt.split("T")[0]}</h6>
                     </div>
+                   
                 </div>
            
             </div>
         </div>
     </Link>
+         {isAuthor && <DropdownMenu>
+                  <DropdownMenuTrigger><Menu/></DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>Customize video</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                        <Link to={`/video/edit-video/:${_id}`}>
+                            <Button>Edit Button</Button>
+                        </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                            <Button onClick={deleteVideoFromId}>DELETE</Button>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>}
+    </div>
+    
   )
 }
 

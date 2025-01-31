@@ -21,15 +21,14 @@ export class CommentService{
         }
     }
 
-    async deleteComment({videoId, commentId}){
+    async deleteComment(_id){
         try {
-            const deletedcomment = await axios.delete(`${BASE_URL}/comment/c/:${videoId}`,
+            const deletedcomment = await axios.delete(`${BASE_URL}/comment/delete`,
                 {
-                    withCredentials: true,
-                    data: {
-                        commentId
-                    }
-                })
+                    data:{_id},
+                },
+                {withCredentials: true}
+            )
 
             if(!deletedcomment){
                 return null
@@ -42,9 +41,9 @@ export class CommentService{
         }
     }
 
-    async editComment({videoId, commentId, newContent}){
+    async editComment({ commentId, newContent , videoId}){
         try {
-            const editedComment = await axios.put(`${BASE_URL}/comment/c/:${videoId}`,
+            const editedComment = await axios.patch(`${BASE_URL}/comment/${videoId}`,
                 {commentId , newContent},
                 {withCredentials: true}
             )

@@ -1,10 +1,9 @@
 import axios from "axios";
 import {BASE_URL} from "../conf/conf.js"
 
-
 export class Videoservice{
 
-    async uploadVideo({videoFile, title ,description, isPublished, thumbnail}){
+    async uploadVideo({videoFile, title ,description, isPublished, thumbnail, owner}){
         try {
             const formData = new FormData();
             // Step 2: Append files
@@ -15,9 +14,9 @@ export class Videoservice{
             formData.append("title", title);          // Add title
             formData.append("description", description); // Add description
             formData.append("isPublished", isPublished); // Add publish status
+            formData.append("owner", owner);
 
-
-            const upload = await axios.post(API_ENDPOINTS.UPLOAD_VIDEO.toString(),
+            const upload = await axios.post(`${BASE_URL}/video/video-upload`,
             formData,
             { 
                 withCredentials: true, // If authentication cookies or tokens are needed
@@ -38,16 +37,16 @@ export class Videoservice{
         }
     }
 
-    async deleteVideo({videoId}){
+    async deleteVideo(videoId){
         try {
-            const deletevideo = await axios.post(API_ENDPOINTS.DELETE_VIDEO.toString(),
+            const deletevideo = await axios.post(`${BASE_URL}/video/video-delete`,
                                 { videoId},
                                 {withCredentials: true}
                             )
             if(!deletevideo){
                 return null
             }
-            return deletevideo
+            return deletevideo.data?.data
         } 
         catch (error) {
             console.log("ERROR IN DELETE VIDEO :: ",error?.message);
