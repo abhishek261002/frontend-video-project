@@ -1,4 +1,5 @@
 import React, { useDebugValue, useEffect, useState } from "react";
+import { Delete, Pencil, Save } from 'lucide-react';
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button, Dropdowns, LikeDislikeBtn,Input } from "../index.js";
@@ -63,15 +64,16 @@ function Comments({ content, createdBy, createdAt, likesOnComment,_id, setRefres
         defaultValue={content}
         {...register("newContent")}
         />
-        <Button type="submit">Save</Button>
+        <Button type="submit"><Save/></Button>
+        <Button onClick={handleEditClick}>Cancel</Button>
       </form>
        }
-        <LikeDislikeBtn initialLikesOnComment={likesOnComment} commentId={_id}/>
+        <LikeDislikeBtn initialLikesOnComment={likesOnComment} commentId={_id} setRefresh={setRefresh}/>
       </div>
       {isOwnerOfComment && !isEditing && (
-  <div >
-    <Button className="mr-2" onClick={handleEditClick}>EDIT</Button>
-    <Button onClick={deleteCommentById}>DELETE</Button>
+  <div >  
+    <Button className="mr-2" onClick={handleEditClick} bgColor="bg-gray-100" textColor="text-black"><Pencil/></Button>
+    <Button onClick={deleteCommentById} bgColor="bg-gray-100" textColor="text-black"><Delete color="#ea1010"/></Button>
   </div>
 )}
 

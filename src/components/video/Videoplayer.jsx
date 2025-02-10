@@ -1,26 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
 import cloudinary from "cloudinary-video-player";
+
+import { useSelector , useDispatch} from "react-redux";
 import "cloudinary-video-player/cld-video-player.min.css";
 import Container from "../../container/Container";
 import videoservice from "../../services/video.service";
 import likeservice from "@/services/like.service";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link , } from "react-router-dom";
 import { Button, Input , SubscribeBtn } from "../index.js";
 import Comments from "../../pages/Comments.jsx";
-import { ThumbsUp } from 'lucide-react';
+import { ThumbsUp,ArrowDownToLine  } from 'lucide-react';
+import { toggleVideoLike } from "@/store/authSlice";
 
 function Videoplayer() {
   const { videoId } = useParams();
   const videoRef = useRef(null);
   const cloudinaryRef = useRef();
   const [video, setVideo] = useState("");
+  const dispatch = useDispatch()
   // const [comments , setComments ] = useState([])
   const likeVideoFromId= async()=>{
     const likeVideo = await likeservice.toggleVideoLike(video?._id);
     if(likeVideo){
-      console.log(likeVideo);
+      toggleVideoLike()
+      alert(likeVideo?.data?.message );
+      dispatch(toggleVideoLike(video?._id))
     }
   }
+  const cloudinaryDownloadUrl = video?.videoFile?.replace('/upload/', '/upload/fl_attachment/');
+
+  const likedVideos = useSelector((state)=>(state.auth.likedVideos))
+  const isAlreadyLiked = likedVideos.includes(videoId) ? true : false
+  console.log(isAlreadyLiked);
 
   useEffect(() => {
     const sourceUrl = async () => {
@@ -52,11 +63,11 @@ function Videoplayer() {
   }, []);
 
   return (
-    <div className="py-8 flex justify-center ">
+    <div className=" flex justify-center ">
       <Container>
-        <div className="w-full">
+        <div className="w-full bg-gray-500 p-4">
           {/* videoplayer */}
-          <div className="w-3/4 bg-gray-500 mx-auto rounded-3xl p-2">
+          <div className="w-3/4  mx-auto rounded-3xl p-2">
             <video
               ref={videoRef}
               className="cld-video-player cld-fluid rounded-3xl"
@@ -87,14 +98,23 @@ function Videoplayer() {
                 <Button bgColor="bg-gray-700" className="hover:bg-black flex gap-2"
                 onClick={likeVideoFromId}
                 >
-                  <ThumbsUp/> {video?.totalLikesOnVideo} likes
+                 {isAlreadyLiked ?          
+                 <>
+                 <ThumbsUp/>
+                 {video?.totalLikesOnVideo} likes
+                 </>  : 
+                 <> 
+                 <ThumbsUp color="" fillOpacity={90} fill="#2246d8"/>
+                 {video?.totalLikesOnVideo} likes</>
+                 }
                 </Button>
                
                 <Button
                   textColor="text-gray-800"
                   className="bg-gray-300 hover:bg-gray-400 font-bold"
                 >
-                  Download
+                  <a href={cloudinaryDownloadUrl} className="flex gap-1" download><ArrowDownToLine/>Download</a>
+
                 </Button>
               </div>
             </div>

@@ -119,7 +119,7 @@ const fetchVideos = async()=>{
               </div>)  :
               (<div className='w-full py-1 '>
                   <Container>
-                      <div className='flex flex-wrap bg-white' > 
+                      <div className='flex flex-wrap bg-gray-700' > 
                           {allVideos && allVideos.map((video)=>(
                               <div key={video._id} className='p-8 w-1/4'>
                               <Videocard {...video} setRefresh={setRefresh} />

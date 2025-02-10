@@ -19,8 +19,9 @@ function LikeDislikeBtn({
         try {
           const response = await likeservice.toggleCommentLike({ videoId, commentId });
     
-          if (response.success) {
+          if (response) {
             // Update like count locally
+            console.log(response);
             setLikes((prevLikes) => (isAlreadyLiked ? prevLikes - 1 : prevLikes + 1));
     
             // Update Redux store

@@ -68,7 +68,7 @@ function Header() {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem><Link to={`/c/${username}/edit-profile`}>Edit profile</Link></DropdownMenuItem>
                     <DropdownMenuItem>Dashboard</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
+                    <DropdownMenuItem><Link to="/playlists">Playlists</Link></DropdownMenuItem>
                     <DropdownMenuItem><LogoutBtn /></DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

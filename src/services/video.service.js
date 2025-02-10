@@ -54,20 +54,26 @@ export class Videoservice{
         }
     }
 
-    async getAllVideos(){
+    async getAllVideos(searchQuery = "") {
         try {
-            const allvideos = await axios.get(`${BASE_URL}/video/all-videos`
-            )
-            if(!allvideos){
-                return null
+            // Construct the URL with the query parameter if searchQuery is provided
+            const url = searchQuery 
+                ? `${BASE_URL}/video/all-videos?title=${encodeURIComponent(searchQuery)}`
+                : `${BASE_URL}/video/all-videos`;
+    
+            const allvideos = await axios.get(url);
+    
+            if (!allvideos) {
+                return null;
             }
-            return allvideos.data
+            return allvideos.data;
         } 
         catch (error) {
             console.log("ERROR IN GETTING ALL VIDEOS :: ", error?.message);
             throw error;
         }
     }
+    
 
     async editVideo({newThumbnail, title, description, videoId}){
         try {

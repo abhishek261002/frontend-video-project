@@ -1,6 +1,7 @@
 import React,{useId}  from 'react'
 
 const Input=React.forwardRef( function Input({label,
+  rounded= "rounded-lg",
   bgColor="bg-white",  
   type="text",
   className = "",
@@ -18,7 +19,7 @@ const Input=React.forwardRef( function Input({label,
           <input type={type}
             ref={ref}
             id={id}
-            className={`px-3 py-2 rounded-lg  text-black outline-none ${bgColor} focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
+            className={`px-3 py-2 ${rounded}  text-black outline-none ${bgColor} focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
             {...props}
           />
       </div>

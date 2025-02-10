@@ -13,6 +13,8 @@ import EditProfile from './pages/EditProfile.jsx';
 import Videoplayer from "./components/video/Videoplayer.jsx"
 import EditVideos from './pages/EditVideos.jsx';
 import VideoUpload from './pages/VideoUpload.jsx';
+import Playlists from './pages/Playlists.jsx';
+import PlaylistLayout from './components/playlist/PlaylistLayout.jsx';
 const router = createBrowserRouter([
   {
     path:"/",
@@ -23,12 +25,24 @@ const router = createBrowserRouter([
         element:<AllVideos/>
       },
       {
+        path: "/search",
+        element: <AllVideos />, // Reusing AllVideos component for search
+      },
+      {
         path:"/login",
         element:<Login/>
       },
       {
         path: "/signup",
         element:<Signup/>
+      },
+      {
+        path: "/playlists",
+        element:<Playlists/>,
+      },
+      {
+        path: "/playlists/:playlistId",
+        element: <PlaylistLayout/>
       },
       {
         path: "/users/c/:username",
