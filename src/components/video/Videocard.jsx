@@ -4,17 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Menu } from "lucide-react";
 import { removeVideo } from "../../store/videoSlice.js";
 import videoservice from "@/services/video.service";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import { Skeleton } from "@/components/ui/skeleton"
 
 import {
   DropdownMenu,
@@ -34,6 +24,7 @@ function Videocard({
   duration,
   createdAt,
   setRefresh,
+  loading
 }) {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.userData);
@@ -62,13 +53,21 @@ function Videocard({
     )}:${secs.padStart(5, "0")}`;
   }
 
-  return (
+  return loading? (<div className="flex flex-col space-y-3">
+    <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+    <div className="space-y-2">
+      <Skeleton className="h-4 w-[250px]" />
+      <Skeleton className="h-4 w-[200px]" />
+    </div>
+  </div>)
+  :
+  (
     <div>
       <Link to={`/video/${_id}`}>
-        <div className="w-full p-2 transition-all rounded-xl shadow-[0px_0px_8px_0px_rgba(0,17,255,1)] bg-black text-white border-double border-spacing-2 border-2 backdrop-blur-md hover:scale-105">
-          <div className="w-full justify-center mb-2">
-            <div className="w-full bg-black p-1.5 rounded-lg">
-              <img src={thumbnail} alt={title} className="rounded-xl h-40" />
+        <div className="w-full p-2 transition-all rounded-xl bg-black text-white border-double border-spacing-2 border-2 backdrop-blur-md hover:scale-105">
+          <div className="w-full  justify-center mb-2">
+            <div className="w-full bg-black  p-1.5 rounded-lg">
+              <img src={thumbnail} alt={title} className="rounded-xl lg:h-40 sm:h-20 mx-auto" />
               <h6 className="text-right text-xs font-bold">
                 {formatTime(duration).split(".")[0]}{" "}
               </h6>

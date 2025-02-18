@@ -58,14 +58,14 @@ function VideoUpload() {
           <Input
             label="VideoFile :"
             type="file"
-            className="mb-4"
+            className="mb-4 file:rounded-xl file:bg-gradient-to-r from-violet-600 to-indigo-600 file:text-white file:hover:font-semibold file:py-1"
             accept="video/*"
             {...register("videoFile", { required: true })}
           />
           <Input
             label="Thumbnail :"
             type="file"
-            className="mb-4 "
+            className="mb-4 file:rounded-xl file:bg-gradient-to-r from-violet-600 to-indigo-600 file:text-white file:hover:font-semibold file:py-1"
             accept="image/png, image/jpg, image/jpeg, image/gif"
             {...register("thumbnail", { required: true })}
           />

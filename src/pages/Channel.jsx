@@ -64,21 +64,21 @@ const fetchVideos = async()=>{
   }, [refresh]);
 
   return channel ? (
-    <div className="py-8">
-      <Container>
-        <div className="w-full pt-4 ">
+    <div className="w-full py-8 flex flex-wrap">
+      <Container className="flex flex-wrap">
+        <div className="w-full py-4 lg:px-0 px-4">
         <img
             src={channel?.coverImage || "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Random-image.jpg/1200px-Random-image.jpg?20160526100125"}
             alt={channel?.username}
-            className="rounded-3xl h-44  w-full "
+            className="rounded-3xl lg:h-full h-full sm:max-h-20  sm:w-full "
           />
         </div>
 
-        <div className="w-full flex gap-10 justify-start  m-4 relative  rounded-xl p-8">
+        <div className="w-full flex flex-wrap gap-10 justify-start  m-4 relative  rounded-xl p-8">
           <img
             src={channel?.avatar}
-            alt={channel?.username}
-            className="rounded-full w-52 h-52 border-4 border-solid border-blue-500"
+            alt={channel?.username} 
+            className="rounded-full sm:w-52 sm:h-52 w-20 h-20 border-4 border-solid border-blue-500"
           />
         <div className="flex flex-col justify-center gap-2">
           <h1 className="text-4xl font-semibold text-white font-mono">fullName : {channel?.fullName}</h1>
@@ -118,10 +118,10 @@ const fetchVideos = async()=>{
                   </Container>
               </div>)  :
               (<div className='w-full py-1 '>
-                  <Container>
-                      <div className='flex flex-wrap bg-gray-700' > 
+                  <Container className="flex flex-wrap">
+                      <div className='w-full flex flex-wrap bg-gray-700' > 
                           {allVideos && allVideos.map((video)=>(
-                              <div key={video._id} className='p-8 w-1/4'>
+                              <div key={video._id} className='p-8 lg:w-1/4 sm:w-1/2 flex flex-wra'>
                               <Videocard {...video} setRefresh={setRefresh} />
                           </div>
                           )    

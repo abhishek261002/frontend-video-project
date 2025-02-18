@@ -1,7 +1,7 @@
 import React from 'react'
 
-function Container({children}) {
-  return  <div className='w-full  mx-auto px-4 py-4 bg-black'
+function Container({children ,className=""}) {
+  return  <div className={`w-full  mx-auto px-4 py-4 bg-black ${className}`}
   >{children}</div>;
   
 }

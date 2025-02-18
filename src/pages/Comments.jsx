@@ -4,6 +4,7 @@ import commentservice from "../services/comment.service";
 import { useParams , useNavigate } from "react-router-dom";
 import { Button, Input } from "../components/index.js";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
 
 function AllComments() {
   const { videoId } = useParams();
@@ -22,7 +23,7 @@ function AllComments() {
       reset();
       setRefresh(!refresh)
     } catch (error) {
-      
+      toast.success(error?.message)
     }
   }
 
@@ -44,7 +45,7 @@ function AllComments() {
   }, [refresh]);
 
   return (
-    <div className="w-3/4 bg-gray-300 rounded-3xl mt-4 mx-auto">
+    <div className="w-full lg:w-3/4 bg-gray-300 rounded-3xl mt-4 mx-auto">
         <h6 className="w-full p-3 font-bold text-2xl font-jaro tracking-wider">{len} Comments :</h6>
       <div className="flex flex-col p-4">
         {/* create comment */}
@@ -63,6 +64,7 @@ function AllComments() {
             <Button type="submit" bgColor="bg-black" className="font-medium font-jaro">Comment</Button>
             </div>
           </form>
+          <ToastContainer/>
         </div>
         {/* display comments */}
         {comments &&
@@ -72,6 +74,7 @@ function AllComments() {
             </div>
           ))}
       </div>
+     
     </div>
   );
 }

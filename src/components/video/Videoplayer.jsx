@@ -65,23 +65,26 @@ function Videoplayer() {
   return (
     <div className=" flex justify-center ">
       <Container>
-        <div className="w-full bg-gray-500 p-4">
+        <div className="w-full  bg-gray-500 p-4">
           {/* videoplayer */}
-          <div className="w-3/4  mx-auto rounded-3xl p-2">
-            <video
+          <div className="w-full lg:w-3/4  mx-auto rounded-3xl p-2">
+          <div className="">
+          <video
               ref={videoRef}
-              className="cld-video-player cld-fluid rounded-3xl"
+              className="cld-video-player cld-fluid rounded-3xl "
             ></video>
-            <h1 className="text-2xl font-semibold my-4 mx-4 text-white font-serif text-start">
+          </div>
+           <div className=" w-full sm:mt-4 text-white flex flex-wrap bg-opacity-5 bg-[url('../.././public/shade-9330020_1280.png')] backdrop-blur-3xl rounded-3xl">
+           <h1 className="text-2xl font-semibold my-4 mx-4 text-white font-serif text-start">
               title - {video?.title}
             </h1>
-            <div className="w-full px-4 flex">
-              <div className="w-1/2 flex gap-5 ">
+            <div className="w-full px-4 flex justify-between">
+              <div className="sm:w-1/2 w-full flex sm:gap-5 ">
                 <Link to={`/users/c/${video?.owner?.username}`}>
                 <img
                   src={video?.owner?.avatar}
                   alt={video?.owner?.username}
-                  className="rounded-3xl h-10"
+                  className="rounded-3xl sm:h-10 h-10"
                 />
                 </Link>
                 <div className="flex flex-col">
@@ -94,7 +97,7 @@ function Videoplayer() {
                 </div>
                 <SubscribeBtn channelId={video?.owner?._id} />
               </div>
-              <div className="w-1/2 flex justify-end gap-4">
+              <div className="   flex flex-wrap justify-end sm:gap-4 gap-1">
                 <Button bgColor="bg-gray-700" className="hover:bg-black flex gap-2"
                 onClick={likeVideoFromId}
                 >
@@ -111,10 +114,9 @@ function Videoplayer() {
                
                 <Button
                   textColor="text-gray-800"
-                  className="bg-gray-300 hover:bg-gray-400 font-bold"
+                  className="bg-gray-300 hover:bg-gray-400 font-bold px-1 py-1 text-sm"
                 >
-                  <a href={cloudinaryDownloadUrl} className="flex gap-1" download><ArrowDownToLine/>Download</a>
-
+                  <a href={cloudinaryDownloadUrl} className="flex gap-1" download><ArrowDownToLine size={20}/>Download</a>
                 </Button>
               </div>
             </div>
@@ -131,6 +133,8 @@ function Videoplayer() {
                 Description - {video?.description}
               </h6>
             </div>
+            </div> 
+           
           </div>
           <Comments />
         </div>
