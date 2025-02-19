@@ -42,11 +42,12 @@ function Header() {
           </div>
           <div class="flex items-center ">
             {!userStatus && (
-              <div className="flex gap-4">
+              <div className="flex gap-4 ">
                 <Link
                   to="/login"
-                  className="inline-block px-6 py-2 duration-200 hover:text-orange-600 rounded-full bg-black text-white font-semibold"
+                  className="inline-block px-6 py-2 duration-200 hover:text-orange-600 rounded-full  bg-black text-white font-semibold "
                 >
+                  <span className="w-0 h-0 rounded bg-purple-600 absolute top-0 left-0 ease-out duration-500 transition-all group-hover:w-full group-hover:h-full -z-1"></span>
                   Log in
                 </Link>
                 <Link
