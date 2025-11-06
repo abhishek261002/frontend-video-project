@@ -36,25 +36,25 @@ function SearchInput() {
   }, [transcript, isVoiceSearch, setValue]);
 
   return (
-    <div className="max-w-md mx-auto">
-      <div className="w-full flex  gap-2 items-center rounded-full ">
-        <form className="w-full flex gap-0.5" onSubmit={handleSubmit(searchVideos)}>
+    <div className="max-w-md mx-auto  ">
+      <div className="w-full flex  gap-2 items-center   rounded-full ">
+        <form className="w-full flex gap-0.5 " onSubmit={handleSubmit(searchVideos)}>
           <Input
-            className="focus:outline-none focus:ring-2 focus:bg-neutral-400 focus:ring-indigo-600 focus:border-transparent focus:shadow-[0px_0px_8px_0px_rgba(0,170,255,0.5)]"
+            className="focus:outline-none h-3/4  focus:ring-2 focus:bg-neutral-400 focus:ring-indigo-600 focus:border-transparent focus:shadow-[0px_0px_8px_0px_rgba(0,170,255,0.5)]"
             rounded="rounded-l-full"
             bgColor="bg-neutral-300"
             type="text"
             placeholder="Search videos..."
             {...register("searchQuery")}
           />
-          <Button bgColor="bg-gray-400" rounded="rounded-r-full" type="submit">
-            <Search color="#000000" />
+          <Button bgColor="bg-gray-400" className="h-3/4" rounded="rounded-r-full" type="submit">
+            <Search size={20} color="#000000" />
           </Button>
         </form>
         {/* Voice Search Button */}
         <button
           onClick={handleVoiceSearch}
-          className={`p-2 rounded-full ${listening ? "bg-red-500" : "bg-gray-400"}`}
+          className={`p-1 rounded-full ${listening ? "bg-red-500" : "bg-gray-400"}`}
         >
          {listening? <MicOff strokeWidth={1.5} /> : <Mic  />}
         </button>

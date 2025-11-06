@@ -1,5 +1,5 @@
 // src/config.js
-export const BASE_URL = "https://backendproject-4gqm.onrender.com/api/v1";
+export const BASE_URL = "http://localhost:8000/api/v1";
 
 export const API_ENDPOINTS = {
     //user

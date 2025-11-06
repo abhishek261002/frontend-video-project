@@ -163,7 +163,20 @@ export class Videoservice{
         }
     }
 
+    async getVideoSummary(transcriptText){
+     try {
+        const videoSummary = await axios.post(`${BASE_URL}/video/video-summary`,
+            {transcriptText}
+        );
+        if(!videoSummary) return null
+        return videoSummary?.data
+     } catch (error) {
+         console.log("ERROR IN FETCHING VIDEO SUMMARY:: ",error?.message);
+            throw error;  
+     }   
+    }
 }
+    
 
 const videoservice = new Videoservice();
 

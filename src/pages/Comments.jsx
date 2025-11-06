@@ -45,7 +45,7 @@ function AllComments() {
   }, [refresh]);
 
   return (
-    <div className="w-full lg:w-3/4 bg-gray-300 rounded-3xl mt-4 mx-auto">
+    <div className="w-full lg:w-3/4 bg-gray-300 rounded-3xl mt-4 ml-1.5">
         <h6 className="w-full p-3 font-bold text-2xl font-jaro tracking-wider">{len} Comments :</h6>
       <div className="flex flex-col p-4">
         {/* create comment */}

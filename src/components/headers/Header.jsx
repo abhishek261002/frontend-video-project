@@ -24,7 +24,7 @@ function Header() {
 
   return (
     <header>
-      <nav class="bg-gradient-to-r from-gray-700 to-gray-900 border-gray-200 px-4 lg:px-8 py-2.5 dark:bg-gray-800">
+      <nav class="bg-gradient-to-r from-gray-700 to-gray-900 border-gray-200 px-4 lg:px-8 py-0.5 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl sm:gap-0 gap-2">
           <Link to="/" class="flex items-center ">
             <img
@@ -36,7 +36,7 @@ function Header() {
               Videostream
             </span>
           </Link>
-          <div class="lg:w-1/3 w-1/2 p-0">
+          <div class="lg:w-1/3  w-1/2 p-0">
             <SearchInput />
          
           </div>
@@ -45,14 +45,14 @@ function Header() {
               <div className="flex gap-4 ">
                 <Link
                   to="/login"
-                  className="inline-block px-6 py-2 duration-200 hover:text-orange-600 rounded-full  bg-black text-white font-semibold "
+                  className="inline-block px-6 py-2 duration-200 hover:text-orange-600 rounded-full  bg-black text-white text-xs font-semibold "
                 >
                   <span className="w-0 h-0 rounded bg-purple-600 absolute top-0 left-0 ease-out duration-500 transition-all group-hover:w-full group-hover:h-full -z-1"></span>
                   Log in
                 </Link>
                 <Link
                   to="/signup"
-                  class="inline-block px-6 py-2 duration-200 hover:text-orange-600 rounded-full bg-black text-white font-semibold"
+                  class="inline-block px-6 py-2 duration-200 hover:text-orange-600 rounded-full bg-black text-xs text-white font-semibold"
                 >
                   Sign Up
                 </Link>
