@@ -1,5 +1,5 @@
 // src/config.js
-export const BASE_URL = "https://backendproject-1-avm7.onrender.com/";
+export const BASE_URL = "https://backendproject-1-avm7.onrender.com/api/v1";
 
 export const API_ENDPOINTS = {
     //user
