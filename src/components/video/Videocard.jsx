@@ -64,7 +64,7 @@ function Videocard({
   (
     <div>
       <Link to={`/video/${_id}`}>
-        <div className="w-full p-2 transition-all rounded-xl bg-black text-white border-double border-spacing-2 border-2 backdrop-blur-md hover:scale-105">
+        <div className="w-full h-auto  transition-all rounded-xl bg-black text-white border-double border-spacing-2 border-2 backdrop-blur-md hover:scale-105">
           <div className="w-full  justify-center mb-2">
             <div className="w-full bg-black  p-1.5 rounded-lg">
               <img src={thumbnail} alt={title} className="rounded-xl lg:h-40 sm:h-20 mx-auto" />
@@ -91,10 +91,10 @@ function Videocard({
                 </div>
               )}
 
-              <div className="  text-center gap-2 p-2">
-                <h6 className="text-xs font-extralight">views- {views} </h6>
+              <div className="  text-left gap-2 p-2">
+                <h6 className="text-xs font-extralight">views: {views} </h6>
                 <h6 className="text-xs font-extralight">
-                  createdAt- {createdAt.split("T")[0]}
+                  date: {createdAt.split("T")[0]}
                 </h6>
               </div>
             </div>

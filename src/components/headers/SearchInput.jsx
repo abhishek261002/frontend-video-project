@@ -37,7 +37,7 @@ function SearchInput() {
 
   return (
     <div className="max-w-md mx-auto  ">
-      <div className="w-full flex  gap-2 items-center   rounded-full ">
+      <div className="w-full flex  gap-2 rounded-full ">
         <form className="w-full flex gap-0.5 " onSubmit={handleSubmit(searchVideos)}>
           <Input
             className="focus:outline-none h-3/4  focus:ring-2 focus:bg-neutral-400 focus:ring-indigo-600 focus:border-transparent focus:shadow-[0px_0px_8px_0px_rgba(0,170,255,0.5)]"
@@ -54,9 +54,9 @@ function SearchInput() {
         {/* Voice Search Button */}
         <button
           onClick={handleVoiceSearch}
-          className={`p-1 rounded-full ${listening ? "bg-red-500" : "bg-gray-400"}`}
+          className={` rounded-full px-2 ${listening ? "bg-red-500" : "bg-gray-400"}`}
         >
-         {listening? <MicOff strokeWidth={1.5} /> : <Mic  />}
+         {listening? <MicOff strokeWidth={1.5} size={20} /> : <Mic size={20} />}
         </button>
       </div>
     </div>

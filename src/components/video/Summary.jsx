@@ -7,7 +7,7 @@ function Summary({
   
   return (
     <div className={` my-auto font-semibold  ${className}`}>
- <ScrollArea className=" w-full max-w-md bg-gradient-to-r from-emerald-500 to-emerald-900 rounded-md border p-3 text-xs">
+ <ScrollArea className=" w-full max-w-md bg-gradient-to-r from-slate-500 to-slate-800 rounded-md border p-3 text-xs">
       {summary || "Loading Summary....."}
     </ScrollArea>
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import cloudinary from "cloudinary-video-player";
+import { RiAiGenerate2 } from "react-icons/ri";
 import { Skeleton } from "@/components/ui/skeleton"
 import OpenAI from "openai";
 import Summary from "./Summary";
@@ -141,14 +142,14 @@ function Videoplayer() {
         <Skeleton className="h-4 w-[150px] bg-gradient-to-r from-neutral-300 to-stone-400" />
       </div>
     </div>
-<Button className="   text-xs py-2"
+<Button className="   text-sm py-2 font-semibold flex  gap-4 justify-center"
 bgColor="bg-gradient-to-r from-violet-500 to-purple-500" 
 onClick={async()=>
   {await loadSummary();
    setSummaryVisible(true)
 
 }}
->generate video summary</Button>
+> <RiAiGenerate2 size={20} /> Generate Summary</Button>
 </div> }
                {summaryVisible &&
                <div className="flex flex-col gap-4 ">
@@ -160,9 +161,9 @@ onClick={async()=>
               
             </div>
            
-            <div className=" w-3/4  sm:mt-4 text-white flex flex-wrap bg-opacity-5 bg-[url('../.././public/shade-9330020_1280.png')] backdrop-blur-3xl rounded-3xl">
+            <div className=" w-3/4  sm:mt-4 text-white flex flex-wrap bg-opacity-5  backdrop-blur-3xl rounded-3xl">
               <h1 className="text-2xl font-semibold my-4 mx-4 text-white font-serif text-start">
-                title - {video?.title}
+                Title - {video?.title}
               </h1>
               <div className="w-full px-4 flex justify-between">
                 <div className="sm:w-1/2 w-full flex sm:gap-5 ">

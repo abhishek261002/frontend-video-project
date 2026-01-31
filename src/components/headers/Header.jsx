@@ -25,7 +25,7 @@ function Header() {
   return (
     <header>
       <nav class="bg-gradient-to-r from-gray-700 to-gray-900 border-gray-200 px-4 lg:px-8 py-0.5 dark:bg-gray-800">
-        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl sm:gap-0 gap-2">
+        <div class="flex flex-wrap justify-between items-center py-2 mx-auto max-w-screen-xl sm:gap-0 gap-2">
           <Link to="/" class="flex items-center ">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
