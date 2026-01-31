@@ -64,7 +64,7 @@ function Videocard({
   (
     <div>
       <Link to={`/video/${_id}`}>
-        <div className="w-full h-auto  transition-all rounded-xl bg-black text-white border-double border-spacing-2 border-2 backdrop-blur-md hover:scale-105">
+        <div className="w-full p-1  transition-all rounded-xl bg-black text-white border-double border-spacing-2 border-2 backdrop-blur-md hover:scale-105">
           <div className="w-full  justify-center mb-2">
             <div className="w-full bg-black  p-1.5 rounded-lg">
               <img src={thumbnail} alt={title} className="rounded-xl lg:h-40 sm:h-20 mx-auto" />
